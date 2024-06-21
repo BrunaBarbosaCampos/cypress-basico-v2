@@ -78,9 +78,9 @@ describe('Central de Atendimento ao Cliente TAT', function() {
 
     });
 
-    context('Envia o formuário com sucesso usando um comando customizado', () => {
+    context.only('Envia o formuário com sucesso usando um comando customizado', () => {
         it('Comando customizado', () => {
-            cy.mensagem('bruna', 'campos', 'bruna@gmail.com', 'teste')
+            cy.comandoteste('bruna', 'campos', 'bruna@gmail.com', 'teste')
 
         })
 
