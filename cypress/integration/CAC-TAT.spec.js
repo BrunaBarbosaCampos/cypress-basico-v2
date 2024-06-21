@@ -15,7 +15,7 @@ describe('Central de Atendimento ao Cliente TAT', function() {
         cy.get('#lastName').type('Campos');
         cy.get('#email').type('bruna.campos@gmail.com');
         cy.get('#open-text-area').type('Prezados, gostaria de expressar minha insatisfação com o serviço prestado. Comprei um produto há duas semanas e até agora não o recebi. Entrei em contato com o atendimento ao cliente várias vezes, mas não obtive nenhuma resposta satisfatória. O número do meu pedido é 123456. Aguardo uma solução rápida para o problema.', {delay:0});
-        cy.get('.button').click();
+        cy.contains('Enviar').click();
 
         cy.get('.success').should('be.visible', 'Mensagem enviada com sucesso.');
     });
@@ -26,7 +26,7 @@ describe('Central de Atendimento ao Cliente TAT', function() {
         cy.get('#lastName').type('Campos');
         cy.get('#email').type('bruna.campos@gmail.com1');
         cy.get('#open-text-area').type('Prezados, gostaria de expressar minha insatisfação com o serviço prestado. Comprei um produto há duas semanas e até agora não o recebi. Entrei em contato com o atendimento ao cliente várias vezes, mas não obtive nenhuma resposta satisfatória. O número do meu pedido é 123456. Aguardo uma solução rápida para o problema.', {delay:0});
-        cy.get('.button').click();
+        cy.contains('Enviar').click();
 
         cy.get('.error').should('be.visible', 'Valide os campos obrigatórios!');
     });
@@ -85,5 +85,7 @@ describe('Central de Atendimento ao Cliente TAT', function() {
         })
 
     })
+
+
 
 });
