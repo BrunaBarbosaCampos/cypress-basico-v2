@@ -26,7 +26,7 @@
 
 
 // Definindo um comando personalizado no Cypress
-Cypress.Commands.add('comandoteste', (usuario, sobrenome, email, textoarea) => {
+Cypress.Commands.add('fillMandatoryFieldsAndSubmit', (usuario, sobrenome, email, textoarea) => {
     cy.get('#firstName').type(usuario);
     cy.get('#lastName').type(sobrenome);
     cy.get('#email').type(email);

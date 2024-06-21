@@ -80,7 +80,7 @@ describe('Central de Atendimento ao Cliente TAT', function() {
 
     context.only('Envia o formuário com sucesso usando um comando customizado', () => {
         it('Comando customizado', () => {
-            cy.comandoteste('bruna', 'campos', 'bruna@gmail.com', 'teste')
+            cy.fillMandatoryFieldsAndSubmit('bruna', 'campos', 'bruna@gmail.com', 'teste')
 
         })
 
