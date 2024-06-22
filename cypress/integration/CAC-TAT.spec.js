@@ -48,7 +48,7 @@ describe('Central de Atendimento ao Cliente TAT', function() {
         cy.get('#email').type('bruna.campos@gmail.com');
         cy.get('#phone-checkbox').click();
         cy.get('#open-text-area').type('Prezados, gostaria de expressar minha insatisfação com o serviço prestado. Comprei um produto há duas semanas e até agora não o recebi. Entrei em contato com o atendimento ao cliente várias vezes, mas não obtive nenhuma resposta satisfatória. O número do meu pedido é 123456. Aguardo uma solução rápida para o problema.', {delay:0});
-        cy.get('.button').click();
+        cy.contains('Enviar').click();
 
         cy.get('.error').should('be.visible', 'Valide os campos obrigatórios!');
     });
@@ -70,7 +70,7 @@ describe('Central de Atendimento ao Cliente TAT', function() {
 
 
     it('Exibe mensagem de erro ao submeter o formulário sem preencher os campos obrigatórios', () => {
-        cy.get('.button').click();
+        cy.contains('Enviar').click();
 
         cy.get('.error').should('be.visible', 'Valide os campos obrigatórios!');
     
@@ -78,7 +78,7 @@ describe('Central de Atendimento ao Cliente TAT', function() {
 
     });
 
-    context.only('Envia o formuário com sucesso usando um comando customizado', () => {
+    context('Envia o formuário com sucesso usando um comando customizado', () => {
         it('Comando customizado', () => {
             cy.fillMandatoryFieldsAndSubmit('bruna', 'campos', 'bruna@gmail.com', 'teste')
 
