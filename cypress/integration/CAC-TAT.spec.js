@@ -82,10 +82,35 @@ describe('Central de Atendimento ao Cliente TAT', function() {
         it('Comando customizado', () => {
             cy.fillMandatoryFieldsAndSubmit('bruna', 'campos', 'bruna@gmail.com', 'teste')
 
-        })
+        });
 
-    })
+    });
+
+     it('Seleciona um produto por seu texto, value e índice', () => {
+        cy.get('#product').select('YouTube');
+        cy.should('have.value', 'youtube');
+
+        cy.get('#product').select('mentoria');
+        cy.should('have.value', 'mentoria');
+
+        cy.get('#product').select(1);
+        cy.should('have.value', 'blog');
 
 
+     });
 
+
+     it('Marca o tipo de atendimento "Feedback"', () => {
+        cy.get('[type="radio"]').check('feedback')
+
+        cy.should('have.value', 'feedback')
+     });
+
+
+     it('Marca cada tipo de atendimento', () => {
+        cy.get('[type="radio"]').check('feedback').should('be.checked')
+        cy.get('[type="radio"]').check('elogio').should('be.checked')
+        cy.get('[type="radio"]').check('ajuda').should('be.checked')
+
+     });
 });
