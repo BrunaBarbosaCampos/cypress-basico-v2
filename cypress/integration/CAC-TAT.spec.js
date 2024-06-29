@@ -46,7 +46,7 @@ describe('Central de Atendimento ao Cliente TAT', function() {
         cy.get('#firstName').type('Bruna');
         cy.get('#lastName').type('Campos');
         cy.get('#email').type('bruna.campos@gmail.com');
-        cy.get('#phone-checkbox').click();
+        cy.get('#phone-checkbox').check();
         cy.get('#open-text-area').type('Prezados, gostaria de expressar minha insatisfação com o serviço prestado. Comprei um produto há duas semanas e até agora não o recebi. Entrei em contato com o atendimento ao cliente várias vezes, mas não obtive nenhuma resposta satisfatória. O número do meu pedido é 123456. Aguardo uma solução rápida para o problema.', {delay:0});
         cy.contains('Enviar').click();
 
@@ -111,6 +111,17 @@ describe('Central de Atendimento ao Cliente TAT', function() {
         cy.get('[type="radio"]').check('feedback').should('be.checked')
         cy.get('[type="radio"]').check('elogio').should('be.checked')
         cy.get('[type="radio"]').check('ajuda').should('be.checked')
+
+     });
+
+
+     it('Marca ambos checkboxes, depois desmarca o último',() =>{
+        cy.get('#check input[type="checkbox"]').check()
+        cy.should('be.checked')
+
+        
+        cy.get('#check input[type="checkbox"]').last().uncheck()
+        cy.should('not.be.checked')
 
      });
 });
