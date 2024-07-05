@@ -124,4 +124,47 @@ describe('Central de Atendimento ao Cliente TAT', function() {
         cy.should('not.be.checked')
 
      });
+
+
+     it('Seleciona um arquivo da pasta fixtures', () => {
+        cy.get('input[type="file"]').selectFile('cypress/fixtures/Arquivo_teste.txt')
+        .then(input => {
+            expect(input[0].files[0].name).to.equal('Arquivo_teste.txt');
+         });
+    });
+
+
+    it('Seleciona um arquivo simulando um drag-and-drop', () => {
+        cy.get('input[type="file"]').selectFile('cypress/fixtures/Arquivo_teste.txt', {action: 'drag-drop'})
+        .then(input => {
+            expect(input[0].files[0].name).to.equal('Arquivo_teste.txt');
+         });
+    });
+
+    it('Seleciona um arquivo utilizando uma fixture para a qual foi dada um alias', () => {
+        cy.fixture('Arquivo_teste.txt').as('filebTAT')
+        cy.get('input[type="file"]').selectFile('@filebTAT')
+        .then(input => {
+            expect(input[0].files[0].name).to.equal('Arquivo_teste.txt');
+         });
+    });
+
+
+    it('Acessa a página da política de privacidade removendo o target e então clicando no link', () => {
+        cy.get('#privacy a').invoke('removeAttr', 'target').click()
+
+        cy.contains('Talking About Testing').should('be.visible')
+        
+
+    });
+
+    it('Testa a página da política de privacidade de forma independente', () => {
+        cy.get('#privacy a').invoke('removeAttr', 'target').click()
+        cy.url().should('eq', 'https://cac-tat.s3.eu-central-1.amazonaws.com/privacy.html')
+        
+
+
+    });
+
+
 });
