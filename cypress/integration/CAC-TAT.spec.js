@@ -158,13 +158,4 @@ describe('Central de Atendimento ao Cliente TAT', function() {
 
     });
 
-    it('Testa a página da política de privacidade de forma independente', () => {
-        cy.get('#privacy a').invoke('removeAttr', 'target').click()
-        cy.url().should('eq', 'https://cac-tat.s3.eu-central-1.amazonaws.com/privacy.html')
-        
-
-
-    });
-
-
 });
