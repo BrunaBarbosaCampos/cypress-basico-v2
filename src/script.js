@@ -68,3 +68,5 @@ function hideMessageAfterTimeout(element) {
     element.style.display = 'none'
   }, 3000)
 
+  
+}
