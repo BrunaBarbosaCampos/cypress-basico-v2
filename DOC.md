@@ -1,1 +1,0 @@
-# Teste de automação básico com cypress
