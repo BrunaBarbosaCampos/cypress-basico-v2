@@ -100,11 +100,16 @@ describe('Central de Atendimento ao Cliente TAT', function() {
      });
 
 
+     
+
      it('Marca o tipo de atendimento "Feedback"', () => {
         cy.get('[type="radio"]').check('feedback')
 
         cy.should('have.value', 'feedback')
      });
+
+    
+
 
 
      it('Marca cada tipo de atendimento', () => {
@@ -158,4 +163,44 @@ describe('Central de Atendimento ao Cliente TAT', function() {
 
     });
 
+
+
+    Cypress._.times(2, () => {
+    it('Congela e avança o tempo para a verificação de mensagem', () => {
+      
+        cy.clock()
+        cy.get('#firstName').type('Bruna');
+        cy.get('#lastName').type('Campos');
+        cy.get('#email').type('bruna.campos@gmail.com');
+        cy.get('#open-text-area').type('Prezados, gostaria de expressar minha insatisfação com o serviço prestado. Comprei um produto há duas semanas e até agora não o recebi. Entrei em contato com o atendimento ao cliente várias vezes, mas não obtive nenhuma resposta satisfatória. O número do meu pedido é 123456. Aguardo uma solução rápida para o problema.', {delay:0});
+        cy.contains('Enviar').click();
+
+        cy.get('.success').should('be.visible', 'Mensagem enviada com sucesso.');
+
+        cy.tick(3000)
+        cy.get('.success').should('not.be.visible', 'Mensagem enviada com sucesso.');
+    });
+
+
+    });
+
+
+    it('Exibe e esconde as mensagens de sucesso e erro usando o .invoke()', () => {
+        cy.get('.success').invoke('show').should('be.visible')
+        cy.get('.success').invoke('hide').should('not.be.visible')
+
+        cy.get('.error').invoke('show').should('be.visible')
+        cy.get('.error').invoke('hide').should('not.be.visible')
+    });
+
+
+    it('Preenche a area de texto usando o comando invoke', () => {
+        const TEXTOAREA = Cypress._.repeat('0123456789', 100)
+        cy.get('#open-text-area').invoke('val', TEXTOAREA)
+    });
+
+
+    it('Encontra o gato', () => {
+        cy.get('#cat').invoke('show').should('be.visible')
+    });
 });
